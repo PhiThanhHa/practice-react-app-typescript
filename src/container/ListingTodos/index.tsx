@@ -3,21 +3,32 @@ import react from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addNewTodos } from "./ListingTodosSlice";
+import { v4 as uuid4 } from "uuid";
 
 function ListingTodos() {
+  const [todoName, setTodoName] = useState("");
+  const [todoAge, setTodoAge] = useState("");
+  const [todoAddress, setTodoAddress] = useState("");
   const dispatch = useDispatch();
 
   const handleAddButtonClick = () => {
-    dispatch(addNewTodos({}));
+    dispatch(
+      addNewTodos({
+        id: uuid4(),
+        name: todoName,
+        priority: priority,
+        completed: false,
+      })
+    );
   };
 
-  const handleUpdateButtonClick = () => {
-    dispatch(addNewTodos({}));
-  };
+  // const handleUpdateButtonClick = () => {
+  //   dispatch(updateTodos({}));
+  // };
 
-  const handleDeleteButtonClick = () => {
-    dispatch(addNewTodos({}));
-  };
+  // const handleDeleteButtonClick = () => {
+  // dispatch(deleteTodos({}));
+  // };
   const dataSource = [
     {
       key: "1",
@@ -72,3 +83,6 @@ function ListingTodos() {
 }
 
 export default ListingTodos;
+function uuid4() {
+  throw new Error("Function not implemented.");
+}
