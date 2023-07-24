@@ -1,9 +1,7 @@
+import React from "react";
 import { Button, Table } from "antd";
-import react from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { addNewTodos } from "./ListingTodosSlice";
-import { v4 as uuid4 } from "uuid";
 
 function ListingTodos() {
   const [todoName, setTodoName] = useState("");
@@ -12,23 +10,23 @@ function ListingTodos() {
   const dispatch = useDispatch();
 
   const handleAddButtonClick = () => {
-    dispatch(
-      addNewTodos({
-        id: uuid4(),
-        name: todoName,
-        priority: priority,
-        completed: false,
-      })
-    );
+    // dispatch(
+    //   addNewTodos({
+    //     id: uuid4(),
+    //     name: todoName,
+    //     priority: priority,
+    //     completed: false,
+    //   })
+    // );
   };
 
-  // const handleUpdateButtonClick = () => {
-  //   dispatch(updateTodos({}));
-  // };
+  const handleUpdateButtonClick = () => {
+    // dispatch(updateTodos({}));
+  };
 
-  // const handleDeleteButtonClick = () => {
+  const handleDeleteButtonClick = () => {
   // dispatch(deleteTodos({}));
-  // };
+  };
   const dataSource = [
     {
       key: "1",
@@ -83,6 +81,3 @@ function ListingTodos() {
 }
 
 export default ListingTodos;
-function uuid4() {
-  throw new Error("Function not implemented.");
-}
