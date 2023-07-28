@@ -1,62 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Table } from "antd";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { IApplicationState, deleteDatas, getPosts } from "../../store";
 
 function ListingTodos() {
-  const [todoName, setTodoName] = useState("");
-  const [todoAge, setTodoAge] = useState("");
-  const [todoAddress, setTodoAddress] = useState("");
   const dispatch = useDispatch();
 
-  const handleAddButtonClick = () => {
-    // dispatch(
-    //   addNewTodos({
-    //     id: uuid4(),
-    //     name: todoName,
-    //     priority: priority,
-    //     completed: false,
-    //   })
-    // );
+  const listPostData = useSelector(
+    (state: IApplicationState) => state.postList
+  );
+
+  const handleDelete = (id: any) => {
+    console.log("-------");
+    id = listPostData.data?.find((id: number) => ({ id }));
+    console.log("[ID]", id);
   };
 
-  const handleUpdateButtonClick = () => {
-    // dispatch(updateTodos({}));
-  };
+  // const handleDelete = (id: any) => {
+  //   console.log("-------");
+  //   id = listDeleteData.data?.find((id: number) => ({ id }));
+  //   console.log("[ID]", id);
+  // };
 
-  const handleDeleteButtonClick = () => {
-  // dispatch(deleteTodos({}));
-  };
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+  // console.log(listDeleteData.data?.length);
+  // console.log(listDeleteData.data);
+
+  // const listDeleteData = useSelector(
+  //   (state: IApplicationState) => state.deleteData
+  // );
+
+  console.log(listPostData.data);
+
+  const dataSource = listPostData.data?.map((value: any, index: number) => ({
+    key: value.id,
+    id: value.id,
+    title: value.title,
+    completed: value.completed.toString(),
+  }));
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
     },
+
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
     },
+
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Completed",
+      dataIndex: "completed",
+      key: "completed",
     },
 
     {
@@ -64,19 +63,35 @@ function ListingTodos() {
       key: "action",
       render: () => (
         <div>
-          <Button type="primary" ghost onClick={handleAddButtonClick}>
-            Add
-          </Button>
-          <Button type="primary" ghost onClick={handleUpdateButtonClick}>
-            Update
-          </Button>
-          <Button type="primary" ghost onClick={handleDeleteButtonClick}>
+          <a href="page1">
+            <Button type="primary" ghost>
+              Add
+            </Button>
+
+            <Button
+              type="primary"
+              ghost
+              style={{ marginLeft: 15, marginRight: 15 }}
+            >
+              Update
+            </Button>
+          </a>
+
+          <Button type="primary" ghost onClick={handleDelete}>
             Delete
           </Button>
         </div>
       ),
     },
   ];
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
+  useEffect(() => {
+    dispatch(deleteDatas((handleDelete: any) => handleDelete(handleDelete.id)));
+  }, []);
+
   return <Table dataSource={dataSource} columns={columns} />;
 }
 

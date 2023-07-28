@@ -1,8 +1,12 @@
 import { forEach } from "lodash";
 
+const URL = "https://jsonplaceholder.typicode.com";
+
 export const ENDPOINTS = {
   GET_BLACK_DOMAINS: "/api/blackdomains",
   UPDATE_BLACK_DOMAIN: "/api/blackdomain/:id",
+  GET_POST: `${URL}/todos`,
+  UPDATE_DATAS: `${URL}/todos/:id`,
 };
 
 export const getApiUrl = (endpoint: string, params?: any): string => {

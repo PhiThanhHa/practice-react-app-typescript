@@ -6,3 +6,4 @@ export const resetData = (type: string): any => {
 };
 
 export * from "./blackdomains";
+export * from "./post";
