@@ -25,7 +25,7 @@ function* createDatas({ datas, type }: AnyAction): Generator<any> {
   yield put({ type: `${type}_ATTEMPT` });
   try {
     const apiUrl = getApiUrl(ENDPOINTS.GET_POST);
-    const data: any = yield Requests.post(apiUrl, { datas }, false);
+    const data: any = yield Requests.post(apiUrl, datas, false);
     if (data) {
       yield put({ type: `${type}_SUCCESS`, data });
     } else {
@@ -36,20 +36,20 @@ function* createDatas({ datas, type }: AnyAction): Generator<any> {
   }
 }
 
-// function* updateDatas({ id, datas, type }: AnyAction): Generator<any> {
-//   yield put({ type: `${type}_ATTEMPT` });
-//   try {
-//     const apiUrl = getApiUrl(ENDPOINTS.UPDATE_DATAS, { id });
-//     const data: any = yield Requests.put(apiUrl, { datas });
-//     if (data) {
-//       yield put({ type: `${type}_SUCCESS`, data });
-//     } else {
-//       yield put({ type: `${type}_FAIL`, error: data.message });
-//     }
-//   } catch (e: any) {
-//     yield put({ type: `${type}_FAIL`, error: e.toString() });
-//   }
-// }
+function* updateDatas({ id, datas, type }: AnyAction): Generator<any> {
+  yield put({ type: `${type}_ATTEMPT` });
+  try {
+    const apiUrl = getApiUrl(ENDPOINTS.UPDATE_DATAS, { id });
+    const data: any = yield Requests.put(apiUrl, datas);
+    if (data) {
+      yield put({ type: `${type}_SUCCESS`, data });
+    } else {
+      yield put({ type: `${type}_FAIL`, error: data.message });
+    }
+  } catch (e: any) {
+    yield put({ type: `${type}_FAIL`, error: e.toString() });
+  }
+}
 
 function* deleteDatas({ id, type }: AnyAction): Generator<any> {
   yield put({ type: `${type}_ATTEMPT` });

@@ -86,7 +86,7 @@ export interface IApplicationState {
   deleteMultipleBlackdomain: IAppRequestState;
   postList: IAppRequestState;
   createDatas: IAppRequestState;
-  // updateData: IAppRequestState;
+  updateData: IAppRequestState;
   deleteData: IAppRequestState;
 }
 

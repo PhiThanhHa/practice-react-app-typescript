@@ -1,11 +1,11 @@
 import Sidebar from "../container/Sidebar";
 import ListingTodos from "../container/ListingTodos";
-import Page1 from "../container/page1";
+import CreateEditTodo from "../container/CreateEditTodo";
 
 //Public Routes
 const publicRoutes = [
   { path: "/", component: ListingTodos },
-  { path: "/Page1", component: Page1, layout: null },
+  { path: "/create-edit", component: CreateEditTodo, layout: null },
   // {path: '/', component: Page2, layout: headeronly},
 ];
 

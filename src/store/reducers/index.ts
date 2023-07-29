@@ -13,7 +13,7 @@ export const rootReducer = combineReducers<IApplicationState>({
   postList: POST_REDUCERS.GetPostReducer,
   createDatas: POST_REDUCERS.CreateDatasReducer,
   deleteData: POST_REDUCERS.DeleteDatasReducer,
-  // updateData: POST_REDUCERS.UpdateDatasReducer,
+  updateData: POST_REDUCERS.UpdateDatasReducer,
 });
 export const ApplicationState = (state: any, action: any) => {
   return rootReducer(state, action);

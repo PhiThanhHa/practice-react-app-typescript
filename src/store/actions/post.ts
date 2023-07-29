@@ -6,20 +6,29 @@ export const getPosts = (): any => {
   };
 };
 
-export const createDatas = (datas: string[]): any => {
+export interface ICreateDatas {
+  title: string;
+  body: string;
+  userId: number;
+}
+
+export const createDatas = (datas: ICreateDatas): any => {
   return {
     type: AllTypeActions.CREATE_DATAS,
     datas,
   };
 };
 
-// export const updateDatas = (id: string | number, datas: string): any => {
-//   return {
-//     type: AllTypeActions.UPDATE_DATAS,
-//     id,
-//     datas,
-//   };
-// };
+export interface IUpdateDatas extends ICreateDatas {
+  id: number;
+}
+
+export const updateDatas = (datas: IUpdateDatas): any => {
+  return {
+    type: AllTypeActions.UPDATE_DATAS,
+    datas,
+  };
+};
 
 export const deleteDatas = (id: any): any => {
   return {

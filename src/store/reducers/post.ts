@@ -16,12 +16,12 @@ export const CreateDatasReducer: Reducer = (
   return GlobalReducer(state, action, AllTypeActions.CREATE_DATAS.toString());
 };
 
-// export const UpdateDatasReducer: Reducer = (
-//   state: IAppRequestState = initialRequestState,
-//   action: AnyAction
-// ) => {
-//   return GlobalReducer(state, action, AllTypeActions.UPDATE_DATAS.toString());
-// };
+export const UpdateDatasReducer: Reducer = (
+  state: IAppRequestState = initialRequestState,
+  action: AnyAction
+) => {
+  return GlobalReducer(state, action, AllTypeActions.UPDATE_DATAS.toString());
+};
 
 export const DeleteDatasReducer: Reducer = (
   state: IAppRequestState = initialRequestState,
